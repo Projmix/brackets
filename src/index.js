@@ -2,10 +2,10 @@ module.exports = function check(str, bracketsConfig) {
   var after = str;
   do {
       var befor = after;
-      for ([l, r] of bracketsConfig) {
-        after = after.replace(`${l}${r}`, '');
-      }
+      bracketsConfig.forEach(element => {
+        after = after.replace(`${element[0]}${element[1]}`, '');
+      });
   } while (after !== befor)
-  if(after) return false;
-  else return true;
+  return !after
+
 }
